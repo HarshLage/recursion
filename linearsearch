@@ -1,26 +1,41 @@
 #include<bits/stdc++.h>
 using namespace std;
-int getsum(int *arr , int size){
-    if(size == 0){
-        return 0;
+void print(int *arr , int size){
+    cout<<"size of array " << size << endl;
+    for(int i=0;i<size;i++){
+        cout<<arr[i]<<" ";
+    }cout<<endl;
+}
+bool linearsearch(int *arr , int size , int key){
+    print(arr,size);
+    if(size==0){
+        return false;
     }
-    if(size == 1){
-        return arr[0];
+    if(arr[0]==key){
+        return true;
     }
-    int remaining  = getsum(arr+1,size-1);
-    int sum = arr[0] + remaining;
-    return sum;
+    else{
+        int remaining = linearsearch(arr+1,size-1,key);
+        return remaining;
+        
+    }
+
 }
 int main()
 {
-  int n;
-  cin>>n;
+  int n,key;
+  cin>>n>>key;
 
-  int arr[n];
+  int arr[100000];
   for(int i=0;i<n;i++){
     cin>>arr[i];
+  } 
+  bool ans = linearsearch(arr,n,key);
+  if(ans){
+    cout<<"present"<<endl;
   }
-
-  cout<<getsum(arr,n);
-  return 0; 
+  else{
+    cout<<"not present"<<endl;
+  }
+   return 0; 
 }
