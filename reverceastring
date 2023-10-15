@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+void reverce(string &s , int i,int j){
+
+    if(i>j){
+        return ;
+    }
+    swap(s[i],s[j]);
+    i++;
+    j--;
+
+    reverce(s,i,j);
+}
+int main()
+{
+  string s = "babbar";
+
+  reverce(s,0,s.length()-1);
+  cout<<s<<endl;
+  return 0; 
+}
