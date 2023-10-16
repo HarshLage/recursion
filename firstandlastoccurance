@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+int firstOcc(vector<int>&arr , int s , int e , int key){
+    if(s>e){
+        return -1;
+    }
+
+    int mid = s + (e-s)/2;
+
+    if(arr[mid]==key){
+        int result = firstOcc(arr,s,mid-1,key);
+        return (result!=-1) ? result : mid;
+    }
+
+    if(arr[mid]>key){
+        return firstOcc(arr , mid + 1,e,key);
+    }
+    else{
+        return firstOcc(arr,s,mid-1,key);
+    }
+}
+int lastocc(vector<int>&arr , int s , int e , int key){
+    if(s>e){
+        return -1;
+
+    }
+
+        int mid = s+(e-s)/2;
+
+        if(arr[mid] == key){
+            int result  = lastocc(arr,mid+1,e,key);
+            return (result!=-1) ? result : mid;
+        }
+
+    if(arr[mid]>key){
+        return lastocc(arr,mid+1,e,key);
+    }
+    else{
+        return lastocc(arr,s,mid-1,key);
+    }
+}
+int main()
+{ 
+  vector<int>arr = {2,1,1,2,1};
+  int key = 1;
+  cout<<"firstoccurance is "<<firstOcc(arr,0,arr.size()-1,key)<<" "<<"Last occurance "<<lastocc(arr,0,arr.size()-1,key);
+  return 0; 
+}
