@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+    
+    int answer(vector<int>& arr , int start , int end) {
+    
+         
+        int mid = start +  (end - start)/2;
+     
+        if(start==end){
+            return start;
+        }
+
+        if(arr[mid]<arr[mid+1]){
+            return answer(arr,mid+1,end);
+
+        }
+        else{
+            return answer(arr,start,mid);
+        }
+
+    }
+    int peakIndexInMountainArray(vector<int>&arr){
+        int s = 0;
+        int e = arr.size()-1;
+        return answer(arr,s,e);
+    }
+int main()
+{
+  vector<int>arr = {1,2,3,2,1};
+  cout<<peakIndexInMountainArray(arr)<<endl;
+  
+}
