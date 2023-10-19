@@ -1,0 +1,32 @@
+long long int binarySearch(int n,int s,int e, int ans){
+
+   long long  int mid = s + (e -s)/2;
+    // long long int square = mid * mid ;
+    mid = s  +( e -s )/2;
+     if(s>e){
+         return ans ;
+     }
+   
+         long long int square = mid * mid ;
+        if(square==n){
+            return mid;
+        }
+        if(square < n){
+            // ans = mid;
+            // s = mid + 1;
+            return binarySearch(n,mid+1,e,mid);
+        }
+        else{
+            return binarySearch(n,s,mid-1,ans);
+
+        }
+
+    
+    
+}
+int floorSqrt(int n)
+{
+   long long answer = binarySearch(n,0,n,-1);
+   return answer; 
+    
+}
