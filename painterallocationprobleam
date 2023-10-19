@@ -1,0 +1,50 @@
+bool ispossible(vector<int> &boards, int k,int mid ){
+    int n = boards.size();
+    int currentk = 1;
+    int pairsum = 0;
+    for(int i=0;i<n;i++){
+        if(boards[i] + pairsum <= mid ){
+           pairsum += boards[i];
+        }
+        else{
+             currentk++;
+            if(currentk > k || boards[i]>mid){
+                return false;
+            }
+            pairsum = 0;
+            pairsum += boards[i];
+
+        }
+    }
+    return true;
+}
+int findLargestMinDis(vector<int> &boards, int k,int s,int e,int sum,int ans)
+{
+    // int s = 0;
+    // int sum = 0;
+    for(int i=0;i<boards.size();i++){
+        sum+=boards[i];
+    }
+     e = sum;
+    int mid = s + (e-s)/2;
+    // int ans = -1;
+    // while(s<=e){
+
+        if(s>e){
+            return;
+        }
+        if(ispossible(boards,k,mid)){
+            // ans = mid;
+            // e = mid - 1;
+            findLargestMinDis(boards,k,s,mid-1,sum,mid);
+        }
+        else {
+            findLargestMinDis(boards,k,mid+1,e,sum,ans);
+        }
+        // mid = s + (e-s)/2;
+    
+
+}
+int findLargestMinDistance(vector<int>&boards,int k){
+
+}
