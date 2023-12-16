@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solverl(string &str,char ch,int index,int &ans){
+    
+    if(str[index]==ch){
+        ans = index;
+        return;
+    }
+
+    
+    solverl(str,ch,index-1,ans);
+}
+void solvelr(string &str,char ch,int index,int &ans){
+    
+    if(str[index] >= str.length()){
+        return;
+    }
+    if(str[index]==ch){
+        ans = index;
+        
+    }
+
+    
+    solvelr(str,ch,index+1,ans);
+}
+int main()
+{
+  string str = "abbabaaab";
+
+  char ch = 'a';
+  int ans = -1;
+  int index = str.length()-1;
+  cout<<index<<endl;
+
+  solverl(str,ch,index,ans);
+  cout<<ans<<endl;
+
+  
+  return 0; 
+}
