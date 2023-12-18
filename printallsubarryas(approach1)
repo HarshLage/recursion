@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+void solve(vector<int>&arr,vector<int>&ans,int index){
+    if(index>=arr.size()){
+        for(int i=0;i<ans.size();i++){
+            cout<<ans[i]<<" ";
+           
+        
+            
+        }
+        cout<<endl;
+        return;
+
+    }
+    int s = arr[index];
+
+    //include
+    ans.push_back(s);
+    solve(arr,ans,index+1);
+
+    ans.pop_back();
+    solve(arr,ans,index+1);
+}
+int main()
+{
+  vector<int>arr = {1,2,3,4,5};
+  vector<int>ans;
+  solve(arr,ans,0);
+  for(int i=0;i<ans.size();i++){
+    cout<<ans[i]<<endl;
+  }
+
+  
+  return 0; 
+}
