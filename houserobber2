@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int robhelper(vector<int>& nums, int i, int size) {
+        if (i >= size) {
+            return 0;
+        }
+
+        
+        int robhelp1 = nums[i] + robhelper(nums, i + 2, size);
+        int robhelp2 = robhelper(nums, i + 1, size);
+
+    
+        return max(robhelp1, max(robhelp2, nums[i]));
+    }
+
+    int rob(vector<int>& nums) {
+        int size = nums.size();
+
+       
+        if (size == 1) {
+            return nums[0];
+        }
+
+        
+        int max1 = robhelper(nums, 0, size - 1);
+        
+        int max2 = robhelper(nums, 1, size);
+
+       
+        return max(max1, max2);
+    }
+};
