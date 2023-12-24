@@ -1,0 +1,43 @@
+class Solution {
+public:
+
+bool isVowele(char ch){
+    if(ch=='A' || ch== 'E' || ch=='I' || ch=='O' || ch == 'U' || ch == 'a' || ch == 'e' || ch=='i' || ch == 'o' || ch=='u'){
+        return true;
+    }
+    return false;
+}
+
+void reverse(string &str , int  s , int e ){
+     
+        //base case
+       
+        if(s>=e){
+            return;
+        }
+        while(s<e && !isVowele(str[s])){
+              s++;
+        }
+         while(s<e && !isVowele(str[e])){
+            e--;
+        }
+
+        if(isVowele(str[s]) && isVowele(str[e])){
+            swap(str[s],str[e]);
+           
+        }
+        reverse(str,s+1,e-1);
+        
+
+
+
+
+    
+}
+string reverseVowels(string s){
+    reverse(s , 0,s.size()-1);
+    return s;
+}
+
+
+};
