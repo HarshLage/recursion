@@ -1,0 +1,32 @@
+class Solution {
+public:
+
+    bool isVowel(char ch) {
+        return (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U' ||
+                ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u');
+    }
+
+    string sortVowels(string &s) {
+        string vowels;
+
+        // Collect vowels from the string
+        for (char ch : s) {
+            if (isVowel(ch)) {
+                vowels.push_back(ch);
+            }
+        }
+
+        // Sort vowels based on ASCII values
+        sort(vowels.begin(), vowels.end());
+
+        // Update the original string with sorted vowels
+        int vowelIndex = 0;
+        for (char &ch : s) {
+            if (isVowel(ch)) {
+                ch = vowels[vowelIndex++];
+            }
+        }
+
+        return s;
+    }
+};
