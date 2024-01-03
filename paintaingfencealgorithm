@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+int getways(int n , int k){
+  if(n==1){
+    return k;
+  }
+  if(n==2){
+    return k + k*(k-1);
+  }
+
+  return (k-1) * (getways(n-1,k) + getways(n-2,k));
+}
+int main() {
+  int n = 3;
+  int k = 3;
+
+  cout<<getways(n,k)<<endl;
+  return 0;
+}
