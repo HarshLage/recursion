@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int minCost(vector<int>& days, vector<int>& costs, int dayIndex) {
+        
+        if (dayIndex == days.size()) {
+            return 0;
+        }
+
+      
+        int oneDayPass = costs[0] + minCost(days, costs, findNextTravelDay(days, dayIndex, 1));
+
+       
+        int sevenDayPass = costs[1] + minCost(days, costs, findNextTravelDay(days, dayIndex, 7));
+
+       
+        int thirtyDayPass = costs[2] + minCost(days, costs, findNextTravelDay(days, dayIndex, 30));
+
+        
+        return min({oneDayPass, sevenDayPass, thirtyDayPass});
+    }
+
+    int findNextTravelDay(vector<int>& days, int currentDayIndex, int passValidity) {
+        int nextDay = days[currentDayIndex] + passValidity;
+
+        for (int i = currentDayIndex + 1; i < days.size(); ++i) {
+           
+            if (days[i] >= nextDay) {
+                return i;
+                break;
+            }
+        }
+
+       
+        return days.size();
+    }
+
+    int mincostTickets(vector<int>& days, vector<int>& costs) {
+        
+        return minCost(days, costs, 0);
+    }
+};
