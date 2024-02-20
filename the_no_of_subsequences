@@ -1,0 +1,35 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+int solve(int index, int sum,vector<int>output, int s , int arr[] , int n){
+  if(index == n){
+    if(s==sum){
+      
+      return 1;
+      
+    }
+    else{
+    
+    return 0;
+    }
+  }
+
+  s += arr[index];
+  output.push_back(arr[index]);
+  int firstcall = solve(index+1,sum,output,s,arr,n);
+
+  s-=arr[index];
+  output.pop_back();
+  int secondcall = solve(index+1,sum,output,s,arr,n);
+
+  return firstcall + secondcall;
+
+  
+}
+int main() {
+  int arr[] = {1,2,1};
+  int sum = 2;
+  int n = 3;
+  vector<int>output;
+ cout<< solve(0,sum,output,0,arr,n) << endl;
+}
