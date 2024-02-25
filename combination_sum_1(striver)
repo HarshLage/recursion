@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void solve(int indx ,vector<int>&candidates , int target , vector<vector<int>>&answer,vector<int>&storage){
+        if(indx == candidates.size()){
+            if(target == 0){
+                answer.push_back(storage);
+
+            }
+            return;
+        }
+
+        if(candidates[indx] <= target){
+            storage.push_back(candidates[indx]);
+            solve(indx,candidates,target - candidates[indx] , answer , storage);
+            storage.pop_back();
+        }
+         solve(indx+1,candidates,target , answer , storage);
+        
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>>answer;
+        vector<int>storage;
+        solve(0,candidates,target,answer,storage);
+        return answer;
+    }
+};
