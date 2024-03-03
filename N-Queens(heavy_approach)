@@ -1,0 +1,58 @@
+class Solution {
+public:
+    bool isSafe(int row , int col , vector<string>&board , int n){
+        int dumrow = row;
+        int dumcol = col;
+
+        while(row >=0 && col >= 0){
+            if(board[row][col] == 'Q') return false;
+            row--;
+            col--;
+        }
+
+        row = dumrow ;
+        col = dumcol;
+
+        while(col >= 0){
+            if(board[row][col]=='Q') return false;
+            col--;
+        }
+
+        row = dumrow;
+        col = dumcol;
+
+        while(row < n && col >=0 ){
+             if(board[row][col]=='Q') return false;
+             row ++;
+             col --;
+        }
+        return true;
+    }
+    void queens(int col , vector<vector<string>>&answer , vector<string>&board, int n ){
+        if(col == n){
+            answer.push_back(board);
+            return;
+        }
+
+        for(int row = 0;row<n;row++){
+            if(isSafe(row , col , board , n )){
+                board[row][col] = 'Q';
+                queens(col+1,answer,board ,n);
+                board[row][col] = '.';
+            }
+        }
+    }
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>>answer;
+
+        vector<string>board(n);
+        string s(n,'.');
+        for(int i=0;i<n;i++){
+            board[i] = s;
+        }
+
+        queens(0,answer,board,n);
+        return answer;
+
+    }
+};
