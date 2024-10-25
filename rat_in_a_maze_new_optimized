@@ -1,0 +1,36 @@
+class Solution {
+  public:
+    void solve(int i , int j , int n , int m , vector<vector<int>> &mat,vector<vector<bool>>&visited , string move,vector<string>&ans , int arrI[] , int arrJ[]){
+        if(i==n-1 && j==m-1){
+            ans.push_back(move);
+            return;
+        }
+        
+        string dir = "DLRU";
+        for(int ind = 0;ind<4;ind++){
+            int nexti = i + arrI[ind];
+            int nextj = j + arrJ[ind];
+           
+           if(nexti >=0 && nextj>=0 && nextj<m && nexti<n && !visited[nexti][nextj] && mat[nexti][nextj]==1){
+               visited[i][j] = true;
+               solve(nexti , nextj , n,m,mat,visited,move + dir[ind],ans,arrI,arrJ);
+               visited[i][j] = false;
+           }
+            
+            
+        }
+        
+    }
+    vector<string> findPath(vector<vector<int>> &mat) {
+        int n = mat.size();
+        int m = mat[0].size();
+        
+         vector<vector<bool>>visited(n,vector<bool>(m,false));
+         
+         vector<string>ans;
+         int arrI[] = {1,0,0,-1};
+         int arrJ[] = {0,-1,1,0};
+         string move = "";
+         if(mat[0][0]==1) solve(0,0,n,m,mat,visited,move,ans,arrI,arrJ);
+         return ans;
+    }
